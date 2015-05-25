@@ -16,22 +16,36 @@
 		
 		returnValue.leftCount = 0;
 		returnValue.rightCount = 0;
-		
+		int checker=0;
 		do {
 			input = serialConnection->getChar();
-			if (input < 58 && input > 47) {
+			if(input==45)
+			{
+			   checker=1;
+			}
+			
+			else if ( (input < 58 && input > 47) ) 
+			{
 				returnValue.leftCount *= 10;
 				returnValue.leftCount += input - 48;
 			}
+			
 		} while (input != ' ');
 		
+		if(checker==1)
+		returnValue.leftCount=(0 - returnValue.leftCount ) ;
+
+		checker=0;
 		do {
 			input = serialConnection->getChar();
-			if (input < 58 && input > 47) {
+			if ( input < 58 && input > 47 ) {
 				returnValue.rightCount *= 10;
 				returnValue.rightCount += input - 48;
 			}
 		} while (input != ' ');
+
+		if(checker==1)
+		returnValue.rightCount=(0 - returnValue.rightCount ) ;
 		
 		return returnValue;
 		
